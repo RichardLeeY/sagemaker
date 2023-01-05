@@ -31,3 +31,20 @@ Actions:
     Compute:
       Type: EC2
       Fleet: Linux.x86-64.Large
+  MendSCA_d3:
+    Identifier: mend/mendsca@v1
+    Outputs:
+      Reports:
+        MendSCA:
+          IncludePaths:
+            - report.sarif
+          Format: SARIFSCA
+    Inputs:
+      Sources:
+        - WorkflowSource
+    Compute:
+      Type: EC2
+    Configuration:
+      MendLicenseKey: SECRET_NAME
+    DependsOn:
+      - Build_35
